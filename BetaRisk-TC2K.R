@@ -58,8 +58,9 @@ log.ret <- na.omit(Return.calculate(ERxts, method = "log"))
 EQ.beta <- as.data.frame(CAPM.beta(log.ret,log.ret$`SP-500`, Rf = .01))
 Fama.beta <- as.data.frame(FamaBeta(log.ret, log.ret$`SP-500`))
 SysRisk <- SystematicRisk(log.ret,log.ret$`SP-500`, Rf = .01, scale = 12)
+IdioRisk <- SpecificRisk(log.ret,log.ret$`SP-500`, Rf = .01)
 
-RiskBeta <- rbind(round(EQ.beta,2), round(Fama.beta,2), round(SysRisk,4))
+RiskBeta <- rbind(round(EQ.beta,2), round(Fama.beta,2), round(SysRisk,4), round(IdioRisk,4))
 RiskData <- t(as.data.frame(RiskBeta))
 
 #EWH.reg <- rollSFM(EWH[,4], .index(EWH), 90)
